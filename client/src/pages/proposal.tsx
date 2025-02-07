@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Confetti from 'react-confetti';
 import { Card } from "@/components/ui/card";
 import ProposalText from "@/components/ProposalText";
 import ProposalButtons from "@/components/ProposalButtons";
@@ -47,6 +48,17 @@ export default function Proposal() {
           </motion.div>
         ))}
       </div>
+
+      {/* Confetti effect */}
+      {showConfetti && (
+        <Confetti
+          width={window.innerWidth}
+          height={window.innerHeight}
+          numberOfPieces={200}
+          recycle={true}
+          colors={['#FF69B4', '#FFB6C1', '#FFC0CB', '#FF1493']}
+        />
+      )}
 
       {/* Celebration hearts when accepted */}
       {showConfetti && (

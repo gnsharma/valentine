@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Confetti from 'react-confetti';
+import Confetti from "react-confetti";
 import { Card } from "@/components/ui/card";
 import ProposalText from "@/components/ProposalText";
 import ProposalButtons from "@/components/ProposalButtons";
@@ -8,12 +8,10 @@ import ImageCarousel from "@/components/ImageCarousel";
 
 // Add your photos to the public/gallery folder and update these paths
 const galleryImages = [
-  '/gallery/photo1.jpg',
-  '/gallery/photo2.jpg',
-  '/gallery/photo3.jpg',
-  '/gallery/photo4.jpg',
-  '/gallery/photo5.jpg',
-  '/gallery/photo6.jpg'
+  "/gallery/photo1.jpg",
+  "/gallery/photo2.jpg",
+  "/gallery/photo3.jpg",
+  "/gallery/photo4.jpg",
 ];
 
 export default function Proposal() {
@@ -27,7 +25,7 @@ export default function Proposal() {
   };
 
   const handleNo = () => {
-    setNoCount(count => count + 1);
+    setNoCount((count) => count + 1);
   };
 
   return (
@@ -42,7 +40,7 @@ export default function Proposal() {
               top: "110%",
               left: `${Math.random() * 100}%`,
               rotate: 0,
-              scale: Math.random() * 0.5 + 0.5
+              scale: Math.random() * 0.5 + 0.5,
             }}
             animate={{
               top: "-10%",
@@ -52,7 +50,7 @@ export default function Proposal() {
               duration: Math.random() * 5 + 5,
               repeat: Infinity,
               ease: "linear",
-              delay: Math.random() * 5
+              delay: Math.random() * 5,
             }}
           >
             💝
@@ -67,7 +65,7 @@ export default function Proposal() {
           height={window.innerHeight}
           numberOfPieces={200}
           recycle={true}
-          colors={['#FF69B4', '#FFB6C1', '#FFC0CB', '#FF1493']}
+          colors={["#FF69B4", "#FFB6C1", "#FFC0CB", "#FF1493"]}
         />
       )}
 
@@ -82,7 +80,7 @@ export default function Proposal() {
                 top: "50%",
                 left: "50%",
                 scale: 0,
-                rotate: 0
+                rotate: 0,
               }}
               animate={{
                 top: `${Math.random() * 100}%`,
@@ -94,7 +92,7 @@ export default function Proposal() {
                 duration: 4,
                 repeat: Infinity,
                 delay: i * 0.1,
-                ease: "easeOut"
+                ease: "easeOut",
               }}
             >
               {["💖", "💝", "💗", "💓", "💕"][Math.floor(Math.random() * 5)]}
@@ -122,7 +120,7 @@ export default function Proposal() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                 >
-                  <ProposalButtons 
+                  <ProposalButtons
                     onYes={handleYes}
                     onNo={handleNo}
                     noCount={noCount}
@@ -146,13 +144,13 @@ export default function Proposal() {
                       <motion.div
                         key={i}
                         initial={{ scale: 0 }}
-                        animate={{ 
+                        animate={{
                           scale: [1, 1.2, 1],
                         }}
-                        transition={{ 
+                        transition={{
                           duration: 1,
                           repeat: Infinity,
-                          delay: i * 0.2 
+                          delay: i * 0.2,
                         }}
                         className="text-4xl"
                       >

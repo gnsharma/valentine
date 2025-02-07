@@ -1,4 +1,4 @@
-import { TypeAnimation } from 'react-type-animation';
+import { TypeAnimation } from "react-type-animation";
 
 interface ProposalTextProps {
   accepted: boolean;
@@ -12,8 +12,8 @@ export default function ProposalText({ accepted }: ProposalTextProps) {
           You've made me the happiest person in the world! 💖
         </h1>
         <p className="text-xl text-pink-500">
-          Every moment with you is a dream come true.
-          I promise to love you more with each passing day! 
+          Every moment with you is a dream come true. I promise to love you more
+          with each passing day!
         </p>
       </div>
     );
@@ -22,9 +22,9 @@ export default function ProposalText({ accepted }: ProposalTextProps) {
   return (
     <TypeAnimation
       sequence={[
-        'Will you...',
+        "Anika Jain, will you...",
         1000,
-        'Will you marry me? 💝',
+        "Anika Jain, will you be my valentine? 💝",
       ]}
       wrapper="h1"
       speed={50}

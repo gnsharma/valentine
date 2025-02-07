@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Confetti from 'react-confetti';
 import { Card } from "@/components/ui/card";
 import ProposalText from "@/components/ProposalText";
 import ProposalButtons from "@/components/ProposalButtons";
@@ -21,9 +20,9 @@ export default function Proposal() {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-pink-100 via-pink-200 to-pink-100 relative overflow-hidden">
-      {/* Animated background hearts */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+      {/* Floating background hearts */}
+      <div className="fixed inset-0 pointer-events-none">
+        {[...Array(30)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute text-4xl"
@@ -49,23 +48,39 @@ export default function Proposal() {
         ))}
       </div>
 
-      {showConfetti && <Confetti 
-        numberOfPieces={150}
-        recycle={true}
-        drawShape={ctx => {
-          ctx.beginPath();
-          ctx.moveTo(0, 0);
-          ctx.lineTo(10, 10);
-          ctx.lineTo(0, 20);
-          ctx.lineTo(-10, 10);
-          ctx.closePath();
-          ctx.fillStyle = '#FF69B4';
-          ctx.fill();
-        }}
-        colors={['#FF69B4', '#FFB6C1', '#FFC0CB', '#FF1493']}
-      />}
+      {/* Celebration hearts when accepted */}
+      {showConfetti && (
+        <div className="fixed inset-0 pointer-events-none">
+          {[...Array(50)].map((_, i) => (
+            <motion.div
+              key={`celebration-${i}`}
+              className="absolute text-4xl"
+              initial={{
+                top: "50%",
+                left: "50%",
+                scale: 0,
+                rotate: 0
+              }}
+              animate={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                scale: [0, 1, 1, 0],
+                rotate: [0, 180, 360],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                delay: i * 0.1,
+                ease: "easeOut"
+              }}
+            >
+              {["💖", "💝", "💗", "💓", "💕"][Math.floor(Math.random() * 5)]}
+            </motion.div>
+          ))}
+        </div>
+      )}
 
-      <div className="relative z-10 min-h-screen w-full flex items-center justify-center p-4">
+      <div className="relative z-10 min-h-screen w-full flex flex-col items-center justify-center p-4">
         <Card className="w-full max-w-lg p-8 bg-white/90 backdrop-blur-sm shadow-xl border-2 border-pink-200">
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
@@ -127,6 +142,39 @@ export default function Proposal() {
             </AnimatePresence>
           </motion.div>
         </Card>
+
+        {/* Image Gallery Section */}
+        <AnimatePresence>
+          {accepted && (
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="w-full max-w-4xl mt-8"
+            >
+              <Card className="p-6 bg-white/90 backdrop-blur-sm">
+                <h2 className="text-2xl font-semibold text-pink-600 text-center mb-6">
+                  Our Love Story 💑
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  {[...Array(6)].map((_, i) => (
+                    <motion.div
+                      key={`gallery-${i}`}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: i * 0.2 }}
+                      className="aspect-square bg-pink-100 rounded-lg flex items-center justify-center"
+                    >
+                      <div className="text-pink-400 text-5xl">
+                        📸
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </Card>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

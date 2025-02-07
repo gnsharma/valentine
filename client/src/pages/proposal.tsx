@@ -5,6 +5,16 @@ import { Card } from "@/components/ui/card";
 import ProposalText from "@/components/ProposalText";
 import ProposalButtons from "@/components/ProposalButtons";
 
+// Add your photos to the public/gallery folder and update these paths
+const galleryImages = [
+  '/gallery/photo1.jpg',
+  '/gallery/photo2.jpg',
+  '/gallery/photo3.jpg',
+  '/gallery/photo4.jpg',
+  '/gallery/photo5.jpg',
+  '/gallery/photo6.jpg'
+];
+
 export default function Proposal() {
   const [accepted, setAccepted] = useState(false);
   const [noCount, setNoCount] = useState(0);
@@ -169,17 +179,19 @@ export default function Proposal() {
                   Our Love Story 💑
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                  {[...Array(6)].map((_, i) => (
+                  {galleryImages.map((imagePath, i) => (
                     <motion.div
                       key={`gallery-${i}`}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: i * 0.2 }}
-                      className="aspect-square bg-pink-100 rounded-lg flex items-center justify-center"
+                      className="aspect-square rounded-lg overflow-hidden"
                     >
-                      <div className="text-pink-400 text-5xl">
-                        📸
-                      </div>
+                      <img 
+                        src={imagePath}
+                        alt={`Memory ${i + 1}`}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      />
                     </motion.div>
                   ))}
                 </div>

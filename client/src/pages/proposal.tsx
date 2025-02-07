@@ -4,6 +4,7 @@ import Confetti from 'react-confetti';
 import { Card } from "@/components/ui/card";
 import ProposalText from "@/components/ProposalText";
 import ProposalButtons from "@/components/ProposalButtons";
+import ImageCarousel from "@/components/ImageCarousel";
 
 // Add your photos to the public/gallery folder and update these paths
 const galleryImages = [
@@ -178,23 +179,7 @@ export default function Proposal() {
                 <h2 className="text-2xl font-semibold text-pink-600 text-center mb-6">
                   Our Love Story 💑
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                  {galleryImages.map((imagePath, i) => (
-                    <motion.div
-                      key={`gallery-${i}`}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: i * 0.2 }}
-                      className="aspect-square rounded-lg overflow-hidden"
-                    >
-                      <img 
-                        src={imagePath}
-                        alt={`Memory ${i + 1}`}
-                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-                      />
-                    </motion.div>
-                  ))}
-                </div>
+                <ImageCarousel images={galleryImages} />
               </Card>
             </motion.div>
           )}

@@ -12,6 +12,8 @@ const galleryImages = [
   "/gallery/photo2.jpg",
   "/gallery/photo3.jpg",
   "/gallery/photo4.jpg",
+  "/gallery/photo5.jpg",
+  "/gallery/photo6.jpg",
 ];
 
 export default function Proposal() {

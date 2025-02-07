@@ -37,14 +37,14 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
                 <img
                   src={src}
                   alt={`Memory ${index + 1}`}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-contain bg-black/5"
                 />
               </div>
             </div>
           ))}
         </div>
       </div>
-      
+
       <Button
         variant="ghost"
         size="icon"
@@ -53,7 +53,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
       >
         <ChevronLeft className="h-6 w-6" />
       </Button>
-      
+
       <Button
         variant="ghost"
         size="icon"

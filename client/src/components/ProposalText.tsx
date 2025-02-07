@@ -22,9 +22,9 @@ export default function ProposalText({ accepted }: ProposalTextProps) {
   return (
     <TypeAnimation
       sequence={[
-        "Anika Jain, will you...",
+        "Anika, will you...",
         1000,
-        "Anika Jain, will you be my valentine? 💝",
+        "Anika, will you be my valentine? 💝",
       ]}
       wrapper="h1"
       speed={50}

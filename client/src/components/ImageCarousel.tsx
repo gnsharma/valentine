@@ -33,11 +33,11 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
               key={index} 
               className="relative flex-[0_0_100%] min-w-0"
             >
-              <div className="pt-[75%] relative">
+              <div className="relative w-full" style={{ paddingBottom: '75%' }}>
                 <img
                   src={src}
                   alt={`Memory ${index + 1}`}
-                  className="absolute inset-0 w-full h-full object-contain bg-black/5"
+                  className="absolute inset-0 w-full h-full object-contain bg-gray-50"
                 />
               </div>
             </div>

@@ -7,9 +7,15 @@ interface ProposalTextProps {
 export default function ProposalText({ accepted }: ProposalTextProps) {
   if (accepted) {
     return (
-      <h1 className="text-3xl md:text-4xl font-bold text-pink-600">
-        Thank you for saying yes! 💖
-      </h1>
+      <div className="space-y-4">
+        <h1 className="text-3xl md:text-4xl font-bold text-pink-600">
+          You've made me the happiest person in the world! 💖
+        </h1>
+        <p className="text-xl text-pink-500">
+          Every moment with you is a dream come true.
+          I promise to love you more with each passing day! 
+        </p>
+      </div>
     );
   }
 

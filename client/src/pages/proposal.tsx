@@ -13,7 +13,6 @@ export default function Proposal() {
   const handleYes = () => {
     setAccepted(true);
     setShowConfetti(true);
-    setTimeout(() => setShowConfetti(false), 10000);
   };
 
   const handleNo = () => {
@@ -21,68 +20,114 @@ export default function Proposal() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-pink-50 flex items-center justify-center p-4">
+    <div className="min-h-screen w-full bg-gradient-to-br from-pink-100 via-pink-200 to-pink-100 relative overflow-hidden">
+      {/* Animated background hearts */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-4xl"
+            initial={{
+              top: "110%",
+              left: `${Math.random() * 100}%`,
+              rotate: 0,
+              scale: Math.random() * 0.5 + 0.5
+            }}
+            animate={{
+              top: "-10%",
+              rotate: 360,
+            }}
+            transition={{
+              duration: Math.random() * 5 + 5,
+              repeat: Infinity,
+              ease: "linear",
+              delay: Math.random() * 5
+            }}
+          >
+            💝
+          </motion.div>
+        ))}
+      </div>
+
       {showConfetti && <Confetti 
-        numberOfPieces={200}
-        recycle={false}
+        numberOfPieces={150}
+        recycle={true}
+        drawShape={ctx => {
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(10, 10);
+          ctx.lineTo(0, 20);
+          ctx.lineTo(-10, 10);
+          ctx.closePath();
+          ctx.fillStyle = '#FF69B4';
+          ctx.fill();
+        }}
         colors={['#FF69B4', '#FFB6C1', '#FFC0CB', '#FF1493']}
       />}
-      
-      <Card className="w-full max-w-lg p-8 bg-white/80 backdrop-blur-sm shadow-xl">
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="space-y-8"
-        >
-          <div className="text-center">
-            <ProposalText accepted={accepted} />
-          </div>
 
-          <AnimatePresence>
-            {!accepted && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-              >
-                <ProposalButtons 
-                  onYes={handleYes}
-                  onNo={handleNo}
-                  noCount={noCount}
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
+      <div className="relative z-10 min-h-screen w-full flex items-center justify-center p-4">
+        <Card className="w-full max-w-lg p-8 bg-white/90 backdrop-blur-sm shadow-xl border-2 border-pink-200">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-8"
+          >
+            <div className="text-center">
+              <ProposalText accepted={accepted} />
+            </div>
 
-          <AnimatePresence>
-            {accepted && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-center space-y-4"
-              >
-                <div className="text-2xl font-semibold text-pink-600">
-                  Yay! 💖 I love you! 💖
-                </div>
-                <div className="flex justify-center gap-4">
-                  {[...Array(5)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: i * 0.2 }}
-                      className="text-4xl"
-                    >
-                      💝
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      </Card>
+            <AnimatePresence>
+              {!accepted && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                >
+                  <ProposalButtons 
+                    onYes={handleYes}
+                    onNo={handleNo}
+                    noCount={noCount}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+              {accepted && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-center space-y-4"
+                >
+                  <div className="text-2xl font-semibold text-pink-600">
+                    My heart is overflowing with joy! 💖
+                  </div>
+                  <div className="flex justify-center gap-4">
+                    {[...Array(5)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ scale: 0 }}
+                        animate={{ 
+                          scale: [1, 1.2, 1],
+                        }}
+                        transition={{ 
+                          duration: 1,
+                          repeat: Infinity,
+                          delay: i * 0.2 
+                        }}
+                        className="text-4xl"
+                      >
+                        💝
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </Card>
+      </div>
     </div>
   );
 }
